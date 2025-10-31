@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# Grid-Maker
+Project/Assignment 3 for CSci 39548
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- [Link to deployed page](https://belovedemperor.github.io/Grid-Maker/) -->
+GitHub Pages WIP
 
-## Available Scripts
+Team Members: Cheng Yue (username: CY343), Christopher Altamirano (username: caltam600), and Jason Huang (username: belovedEmperor)
 
-In the project directory, you can run:
+## Documentation
+### Feature Requirements
+1. **Account Balance Calculation**
+    * 1.1. Dynamic Calculation: The application must calculate the account balance by subtracting the sum of all debits from the sum of all credits.
+    * 1.2. Real-time Updates: The account balance must update automatically whenever a new credit or debit is added.
+    * 1.3. Data Formatting: All monetary values, including the account balance, credits, and debits, must be rounded to two decimal places.
+    * 1.4. Negative Balances: The system must support and correctly display negative account balances.
 
-### `npm start`
+2. **Credits Management**
+    * 2.1. Credits Page: A dedicated "Credits" page must be accessible from the Home page.
+    * 2.2. Data Fetching: The application will retrieve an initial list of credit transactions from the specified API endpoint.
+    * 2.3. Display Credits: The "Credits" page will display a list of all credit transactions, showing the description, amount, and date for each.
+    * 2.4. Add New Credit: Users must be able to add a new credit by providing a description and an amount. The date for the new credit will be the current date.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. **Debits Management**
+    * 3.1. Debits Page: A dedicated "Debits" page must be accessible from the Home page.
+    * 3.2. Data Fetching: The application will retrieve an initial list of debit transactions from the specified API endpoint.
+    * 3.3. Display Debits: The "Debits" page will display a list of all debit transactions, showing the description, amount, and date for each.
+    * 3.4. Add New Debit: Users must be able to add a new debit by providing a description and an amount. The date for the new debit will be the current date.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+4. **Application State Management**
+    * 4.1. Centralized State: The main App component will manage the application's core state, including account balance, credits, and debits.
+    * 4.2. State Modification: Functions for adding new credits and debits will be defined in the App component to modify the state.
 
-### `npm test`
+5. **API Integration**
+    * 5.1. Initial Data Load: The application must make API calls to fetch initial credit and debit data when the component mounts.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Application Architecture Description and Diagram
+Description + Diagram WIP
 
-### `npm run build`
+### Epics, User Stories, and Acceptance Criteria
+**Epic: Account Balance**
+- User Story 1: As a user, I want to see my account balance so that I can quickly understand my financial position.
+    - Acceptance Criteria:
+        - The account balance is calculated as Total Credits - Total Debits.
+        - The account balance updates immediately after a new credit or debit is added.
+        - The account balance can be a negative value.
+        - All amounts are displayed with two decimal places.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Epic: Credits**
+- User Story 2: As a user, I want to navigate to a "Credits" page from the Home page to view my credit history.
+    - Acceptance Criteria:
+        - Clicking the "Credits" link on the Home page redirects to the Credits page.
+        - The Credits page has a clear title, such as "Credits".
+- User Story 3: As a user on the Credits page, I want to see a list of all my past credits so that I can review my income.
+    - Acceptance Criteria:
+        - The page displays a list of all credit transactions fetched from the API.
+        - Each credit in the list shows its description, amount, and date (in yyyy-mm-dd format).
+        - All credit amounts are rounded to two decimal places.
+- User Story 4: As a user on the Credits page, I want to add a new credit so that I can keep my financial records up to date.
+    - Acceptance Criteria:
+        - When I enter a description and amount and click "Add Credit," a new credit is added to the list.
+        - The new credit is displayed with the current date.
+        - The overall account balance is immediately updated to reflect the new credit.
+        - The new credit amount is displayed with two decimal places.
+- User Story 5: As a user on the Credits page, I want to see my account balance so that I can see how my credits impact my total balance.
+    - Acceptance Criteria:
+        - The current account balance is displayed on the Credits page.
+        - The balance is formatted to two decimal places.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Epic: Debits**
+- User Story 6: As a user, I want to navigate to a "Debits" page from the Home page to view my spending history.
+    - Acceptance Criteria:
+        - Clicking the "Debits" link on the Home page redirects to the Debits page.
+        - The Debits page has a clear title, such as "Debits".
+- User Story 7: As a user on the Debits page, I want to see a list of all my past debits so that I can review my expenses.
+    - Acceptance Criteria:
+        - The page displays a list of all debit transactions fetched from the API.
+        - Each debit in the list shows its description, amount, and date (in yyyy-mm-dd format).
+        - All debit amounts are rounded to two decimal places.
+- User Story 8: As a user on the Debits page, I want to add a new debit so that I can track my spending.
+    - Acceptance Criteria:
+        - When I enter a description and amount and click "Add Debit," a new debit is added to the list.
+        - The new debit is displayed with the current date.
+        - The overall account balance is immediately updated to reflect the new debit.
+        - The new debit amount is displayed with two decimal places.
+- User Story 9: As a user on the Debits page, I want to see my account balance so that I can understand how my spending affects my total balance.
+    - Acceptance Criteria:
+        - The current account balance is displayed on the Debits page.
+        - The balance is formatted to two decimal places.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Project Schedule
+[Github Project/Gantt Chart Link](https://github.com/users/belovedEmperor/projects/4)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+IMAGE WIP
