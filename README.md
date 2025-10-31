@@ -52,7 +52,7 @@ Description + Diagram WIP
         - The Credits page has a clear title, such as "Credits".
 - User Story 3: As a user on the Credits page, I want to see a list of all my past credits so that I can review my income.
     - Acceptance Criteria:
-        - The page displays a list of all credit transactions fetched from the API.
+        - The page displays a list of all credit transactions fetched from the API (https://johnnylaicode.github.io/api/credits.json).
         - Each credit in the list shows its description, amount, and date (in yyyy-mm-dd format).
         - All credit amounts are rounded to two decimal places.
 - User Story 4: As a user on the Credits page, I want to add a new credit so that I can keep my financial records up to date.
@@ -67,22 +67,22 @@ Description + Diagram WIP
         - The balance is formatted to two decimal places.
 
 **Epic: Debits**
-- User Story 6: As a user, I want to navigate to a "Debits" page from the Home page to view my spending history.
+* User Story 6: As a user, I want to navigate to a "Debits" page from the Home page to view my spending history.
     - Acceptance Criteria:
         - Clicking the "Debits" link on the Home page redirects to the Debits page.
         - The Debits page has a clear title, such as "Debits".
-- User Story 7: As a user on the Debits page, I want to see a list of all my past debits so that I can review my expenses.
+* User Story 7: As a user on the Debits page, I want to see a list of all my past debits so that I can review my expenses.
     - Acceptance Criteria:
-        - The page displays a list of all debit transactions fetched from the API.
+        - The page displays a list of all debit transactions fetched from the API (https://johnnylaicode.github.io/api/debits.json).
         - Each debit in the list shows its description, amount, and date (in yyyy-mm-dd format).
         - All debit amounts are rounded to two decimal places.
-- User Story 8: As a user on the Debits page, I want to add a new debit so that I can track my spending.
+* User Story 8: As a user on the Debits page, I want to add a new debit so that I can track my spending.
     - Acceptance Criteria:
         - When I enter a description and amount and click "Add Debit," a new debit is added to the list.
         - The new debit is displayed with the current date.
         - The overall account balance is immediately updated to reflect the new debit.
         - The new debit amount is displayed with two decimal places.
-- User Story 9: As a user on the Debits page, I want to see my account balance so that I can understand how my spending affects my total balance.
+* User Story 9: As a user on the Debits page, I want to see my account balance so that I can understand how my spending affects my total balance.
     - Acceptance Criteria:
         - The current account balance is displayed on the Debits page.
         - The balance is formatted to two decimal places.
