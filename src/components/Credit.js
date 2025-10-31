@@ -19,11 +19,12 @@ class Credit extends Component {
             <td>Date</td>
           </tr>
           {this.props.credits.map((transaction) => {
+            const date = new Date(transaction.date);
             return (
               <tr key={transaction.id}>
                 <td>{transaction.description}</td>
                 <td>{transaction.amount.toFixed(2)}</td>
-                <td>{transaction.date}</td>
+                <td>{`${date.getFullYear()}-${String(date.getMonth()).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`}</td>
               </tr>
             );
           })}
