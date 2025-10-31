@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import UserProfile from "./components/UserProfile";
+import Login from "./components/Login";
 
 class App extends Component {
   constructor() {
@@ -9,11 +10,17 @@ class App extends Component {
     this.state = {
       accountBalance: 9999.99,
       currentUser: {
-        userName: "Joe Smith",
-        memberSince: "11/22/99",
+        userName: "Jason Huang",
+        memberSince: "12/11/1297",
       },
     };
   }
+
+  mockLogIn = (logInInfo) => {
+    const newUser = { ...this.state.currentUser };
+    newUser.userName = logInInfo.userName;
+    this.setState({ currentUser: newUser });
+  };
 
   render() {
     // You no longer need to create a separate constant for components.
@@ -36,6 +43,12 @@ class App extends Component {
                 userName={this.state.currentUser.userName}
                 memberSince={this.state.currentUser.memberSince}
               />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <Login user={this.state.currentUser} mockLogIn={this.mockLogIn} />
             }
           />
         </Routes>
