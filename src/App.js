@@ -17,14 +17,9 @@ class App extends Component {
         memberSince: "4 BC",
       },
       credits: [],
+      debits: [],
     };
   }
-
-  mockLogIn = (logInInfo) => {
-    const newUser = { ...this.state.currentUser };
-    newUser.userName = logInInfo.userName;
-    this.setState({ currentUser: newUser });
-  };
 
   async componentDidMount() {
     try {
@@ -32,7 +27,12 @@ class App extends Component {
         "https://johnnylaicode.github.io/api/credits.json",
       );
 
-      this.setState({ credits: [...this.state.credits, ...response.data] });
+      this.setState(
+        { credits: [...this.state.credits, ...response.data] },
+        () => {
+          this.calculateAccountBalance(); // Having this in the callback param means that it will only run after the states are set
+        },
+      );
     } catch (e) {
       if (e.response) {
         console.log(e.response.data);
@@ -41,12 +41,33 @@ class App extends Component {
     }
   }
 
+  mockLogIn = (logInInfo) => {
+    const newUser = { ...this.state.currentUser };
+    newUser.userName = logInInfo.userName;
+    this.setState({ currentUser: newUser });
+  };
+
   addCredit = (id, description, amount, date) => {
     const updatedCredits = [
       ...this.state.credits,
       { id, description, amount, date },
     ];
     this.setState({ credits: updatedCredits });
+  };
+
+  calculateAccountBalance = () => {
+    const totalCredit = this.state.credits.reduce(
+      (sum, credit) => sum + credit.amount,
+      0,
+    );
+    const totalDebit = this.state.debits.reduce(
+      (sum, debits) => sum + debits,
+      0,
+    );
+
+    this.setState({
+      accountBalance: Number(totalCredit - totalDebit).toFixed(2),
+    });
   };
 
   render() {
