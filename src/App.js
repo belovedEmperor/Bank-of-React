@@ -32,7 +32,7 @@ class App extends Component {
         "https://johnnylaicode.github.io/api/credits.json",
       );
 
-      this.setState({ credits: response.data });
+      this.setState({ credits: [...this.state.credits, ...response.data] });
     } catch (e) {
       if (e.response) {
         console.log(e.response.data);
@@ -41,13 +41,13 @@ class App extends Component {
     }
   }
 
-  addCredit(id, description, amount, date) {
+  addCredit = (id, description, amount, date) => {
     const updatedCredits = [
       ...this.state.credits,
       { id, description, amount, date },
     ];
     this.setState({ credits: updatedCredits });
-  }
+  };
 
   render() {
     // You no longer need to create a separate constant for components.
@@ -75,7 +75,9 @@ class App extends Component {
           <Route path="/login" element={<Login mockLogIn={this.mockLogIn} />} />
           <Route
             path="/credit"
-            element={<Credit credits={this.state.credits} />}
+            element={
+              <Credit credits={this.state.credits} addCredit={this.addCredit} />
+            }
           />
         </Routes>
       </Router>
