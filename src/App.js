@@ -16,6 +16,7 @@ class App extends Component {
         userName: "Jesus",
         memberSince: "4 BC",
       },
+      dataFetched: false,
       credits: [],
       debits: [],
     };
@@ -28,7 +29,10 @@ class App extends Component {
       );
 
       this.setState(
-        { credits: [...this.state.credits, ...response.data] },
+        {
+          credits: [...response.data],
+          dataFetched: true,
+        },
         () => {
           this.calculateAccountBalance(); // Having this in the callback param means that it will only run after the states are set
         },
@@ -52,7 +56,9 @@ class App extends Component {
       ...this.state.credits,
       { id, description, amount, date },
     ];
-    this.setState({ credits: updatedCredits });
+    this.setState({ credits: updatedCredits }, () => {
+      this.calculateAccountBalance();
+    });
   };
 
   calculateAccountBalance = () => {
@@ -97,7 +103,11 @@ class App extends Component {
           <Route
             path="/credit"
             element={
-              <Credit credits={this.state.credits} addCredit={this.addCredit} />
+              <Credit
+                credits={this.state.credits}
+                addCredit={this.addCredit}
+                accountBalance={this.state.accountBalance}
+              />
             }
           />
         </Routes>
