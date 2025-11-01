@@ -41,6 +41,14 @@ class App extends Component {
     }
   }
 
+  addCredit(id, description, amount, date) {
+    const updatedCredits = [
+      ...this.state.credits,
+      { id, description, amount, date },
+    ];
+    this.setState({ credits: updatedCredits });
+  }
+
   render() {
     // You no longer need to create a separate constant for components.
     // You can pass the props directly inside the JSX for the element.

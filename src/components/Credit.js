@@ -12,6 +12,7 @@ class Credit extends Component {
   render() {
     return (
       <div>
+        <br />
         <table>
           <tr>
             <td>Description</td>
