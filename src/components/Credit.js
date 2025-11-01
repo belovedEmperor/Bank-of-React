@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import AccountBalance from "./AccountBalance";
 
 class Credit extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class Credit extends Component {
     this.props.addCredit(
       id,
       this.state.description,
-      this.state.amount,
+      Number(this.state.amount),
       this.state.date,
     );
   };
@@ -62,6 +63,9 @@ class Credit extends Component {
           <br />
           <button onClick={this.save}>Add Credit</button>
         </div>
+        <br />
+        <AccountBalance accountBalance={this.props.accountBalance} />
+        <br />
         <Link to="/">Back to Home</Link>
       </div>
     );
