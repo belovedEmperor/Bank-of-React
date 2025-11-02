@@ -1,8 +1,7 @@
 # Grid-Maker
-Project/Assignment 3 for CSci 39548
+Project/Assignment 3 for CSci 39548 (Practical Web Development)
 
-<!-- [Link to deployed page](https://belovedemperor.github.io/Grid-Maker/) -->
-GitHub Pages WIP
+[Link to deployed page](https://belovedemperor.github.io/Bank-of-React/)
 
 Team Members: Cheng Yue (username: CY343), Christopher Altamirano (username: caltam600), and Jason Huang (username: belovedEmperor)
 
