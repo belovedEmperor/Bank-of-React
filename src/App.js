@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import UserProfile from "./components/UserProfile";
 import Login from "./components/Login";
 import Credit from "./components/Credit";
+import Debit from "./components/Debit";
 
 class App extends Component {
   constructor() {
@@ -25,13 +26,15 @@ class App extends Component {
 
   async componentDidMount() {
     try {
-      const response = await axios.get(
-        "https://johnnylaicode.github.io/api/credits.json",
-      );
+     const [creditRes, debitRes] = await Promise.all([
+      axios.get("https://johnnylaicode.github.io/api/credits.json"),
+      axios.get("https://johnnylaicode.github.io/api/debits.json"),
+    ]);
 
       this.setState(
         {
-          credits: [...response.data],
+          credits: [...creditRes.data],
+          debits:[...debitRes.data],
           dataFetched: true,
         },
         () => {
@@ -60,6 +63,11 @@ class App extends Component {
     this.setState({ credits: updatedCredits }, () => {
       this.calculateAccountBalance();
     });
+  };
+
+  addDebit = (id, description, amount, date) => {
+  const updatedDebits = [...this.state.debits, { id, description, amount, date }];
+  this.setState({ debits: updatedDebits }, this.calculateAccountBalance);
   };
 
   calculateAccountBalance = () => {
@@ -111,6 +119,16 @@ class App extends Component {
               />
             }
           />
+        <Route
+        path="/debits"
+        element={
+          <Debit
+            debits={this.state.debits}
+            addDebit={this.addDebit}
+            accountBalance={this.state.accountBalance}
+          />
+        }
+      />
         </Routes>
       </Router>
     );
