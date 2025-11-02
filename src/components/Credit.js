@@ -11,6 +11,13 @@ class Credit extends Component {
     };
   }
 
+  componentDidMount() {
+    const date = new Date();
+    this.setState({
+      date: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`,
+    });
+  }
+
   updateDescription = (event) => {
     this.setState({ description: event.target.value });
   };
@@ -49,7 +56,7 @@ class Credit extends Component {
               <tr key={transaction.id}>
                 <td>{transaction.description}</td>
                 <td>{Number(transaction.amount).toFixed(2)}</td>
-                <td>{`${date.getFullYear()}-${String(date.getMonth()).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`}</td>
+                <td>{`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getUTCDate()).padStart(2, "0")}`}</td>
               </tr>
             );
           })}
@@ -58,7 +65,12 @@ class Credit extends Component {
           Description:{" "}
           <input onChange={this.updateDescription} placeholder="Description" />
           Amount: <input onChange={this.updateAmount} placeholder="Amount" />
-          Date: <input onChange={this.updateDate} placeholder="Date" />
+          Date:{" "}
+          <input
+            value={this.state.date}
+            onChange={this.updateDate}
+            placeholder={this.state.date}
+          />
           <br />
           <button onClick={this.save}>Add Credit</button>
         </div>
