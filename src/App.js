@@ -7,6 +7,8 @@ import Home from "./components/Home";
 import UserProfile from "./components/UserProfile";
 import Login from "./components/Login";
 import Credit from "./components/Credit";
+import Debit from "./components/Debit";
+
 
 class App extends Component {
   constructor() {
@@ -62,6 +64,13 @@ class App extends Component {
     });
   };
 
+  addDebit = (id, description, amount, date) => {
+  const updatedDebits = [...this.state.debits, { id, description, amount, date }];
+  this.setState({ debits: updatedDebits }, () => {
+    this.calculateAccountBalance();
+  });
+};
+
   calculateAccountBalance = () => {
     const totalCredit = this.state.credits.reduce(
       (sum, credit) => sum + credit.amount,
@@ -107,6 +116,16 @@ class App extends Component {
               <Credit
                 credits={this.state.credits}
                 addCredit={this.addCredit}
+                accountBalance={this.state.accountBalance}
+              />
+            }
+          />
+          <Route
+            path="/debit"
+            element={
+              <Debit
+                debits={this.state.debits}
+                addDebit={this.addDebit}
                 accountBalance={this.state.accountBalance}
               />
             }
