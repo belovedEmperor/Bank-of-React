@@ -81,7 +81,7 @@ class App extends Component {
     // You no longer need to create a separate constant for components.
     // You can pass the props directly inside the JSX for the element.
     return (
-      <Router>
+      <Router basename="/Bank-of-React">
         <Routes>
           {/*
               For React Router 6, you need to use <Routes> to wrap <Route> & "element" instead of "component"
