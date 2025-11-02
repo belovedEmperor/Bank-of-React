@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// Using HashRouter instead of BrowserRouter because BrowserRouter didn't work with gh-pages
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 
