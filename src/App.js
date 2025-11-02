@@ -67,7 +67,7 @@ class App extends Component {
       0,
     );
     const totalDebit = this.state.debits.reduce(
-      (sum, debits) => sum + debits,
+      (sum, debits) => sum + debits.amount,
       0,
     );
 
