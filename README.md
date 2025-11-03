@@ -1,4 +1,4 @@
-# Grid-Maker
+# Bank-of-React
 Project/Assignment 3 for CSci 39548 (Practical Web Development)
 
 [Link to deployed page](https://belovedemperor.github.io/Bank-of-React/)
@@ -33,7 +33,22 @@ Team Members: Cheng Yue (username: CY343), Christopher Altamirano (username: cal
     * 5.1. Initial Data Load: The application must make API calls to fetch initial credit and debit data when the component mounts.
 
 ### Application Architecture Description and Diagram
-Description + Diagram WIP
+The application uses React Router to link pages to other pages.
+
+`Home` the root and home page, linking to all other pages.
+Every other page also has a link to the home page.
+
+`User Profile` allows users to see their profile.
+`Login` allows users to login.
+`Credit` allows users to see their credit history and add credits.
+`Debit` allows users to see their debit history and add credits.
+`AccountBalance` renders the account balance based on the `props` input.
+
+The states and functions of the `App` is sent to the other page components as `props`.
+
+When the `App` component mounts, it calls to 2 APIs and sets the `credits` and `debits` states to the received data.
+
+![](https://github.com/user-attachments/assets/bff2c645-b9fd-45ae-8c1d-0692945bbb79)
 
 ### Epics, User Stories, and Acceptance Criteria
 **Epic: Account Balance**
@@ -89,4 +104,4 @@ Description + Diagram WIP
 ### Project Schedule
 [Github Project/Gantt Chart Link](https://github.com/users/belovedEmperor/projects/4)
 
-IMAGE WIP
+![](https://github.com/user-attachments/assets/293cf55e-ad1a-4676-93f9-81686ca0e5da)
