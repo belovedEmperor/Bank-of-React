@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // Redirect was changed to Navigate in React Router v6
 import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
   constructor() {
@@ -28,18 +29,21 @@ class Login extends Component {
       return <Navigate to="/userProfile" />;
     }
     return (
-      <div>
+      <div className="centercontent">
+        <h1>User Profile</h1>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label>User Name</label>
+            <label>User Name </label>
             <input type="text" name="userName" onChange={this.handleChange} />
           </div>
           <div>
-            <label>Password</label>
+            <label>Password </label>
             <input type="password" name="password" />
           </div>
           <button>Log In</button>
         </form>
+        <br />
+        <Link to="/">Return to Home</Link>
       </div>
     );
   }
