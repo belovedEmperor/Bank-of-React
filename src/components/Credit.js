@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AccountBalance from "./AccountBalance";
+import './Style.css';
 
 class Credit extends Component {
   constructor(props) {
@@ -43,42 +44,75 @@ class Credit extends Component {
 
   render() {
     return (
-      <div>
-        <br />
-        <table>
-          <tr>
-            <td>Description</td>
-            <td>Amount</td>
-            <td>Date</td>
-          </tr>
-          {this.props.credits.map((transaction) => {
-            const date = new Date(transaction.date);
-            return (
-              <tr key={transaction.id}>
-                <td>{transaction.description}</td>
-                <td>{Number(transaction.amount).toFixed(2)}</td>
-                <td>{`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getUTCDate()).padStart(2, "0")}`}</td>
+      <div className="background">
+        <div className="columncontainer">
+          <div className="leftside">
+            <br />
+            <div className="bubble">
+              <AccountBalance accountBalance={this.props.accountBalance} />
+              <br />
+              <Link to="/userProfile">User Profile</Link>
+              <Link to="/login">Login</Link>
+              <Link to="/credit">Credit</Link>
+              <Link to="/debit">Debit</Link>
+              <Link to="/">Back to Home</Link>
+            </div>
+          </div>
+          <div className="rightside">
+            <h1>Credit</h1>
+            <table>
+              <tr>
+                <td>Description</td>
+                <td>Amount</td>
+                <td>Date</td>
               </tr>
-            );
-          })}
-        </table>
-        <div className="addForm">
-          Description:{" "}
-          <input onChange={this.updateDescription} placeholder="Description" />
-          Amount: <input onChange={this.updateAmount} placeholder="Amount" />
-          Date:{" "}
-          <input
-            value={this.state.date}
-            onChange={this.updateDate}
-            placeholder={this.state.date}
-          />
-          <br />
-          <button onClick={this.save}>Add Credit</button>
+              {this.props.credits.map((transaction) => {
+                const date = new Date(transaction.date);
+                return (
+                  <tr key={transaction.id}>
+                    <td>{transaction.description}</td>
+                    <td>{Number(transaction.amount).toFixed(2)}</td>
+                    <td>{`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getUTCDate()).padStart(2, "0")}`}</td>
+                  </tr>
+                );
+              })}
+            </table>
+            <div className="addForm">
+              Description:{" "}
+              <input onChange={this.updateDescription} placeholder="Description" />
+              Amount: <input onChange={this.updateAmount} placeholder="Amount" />
+              Date:{" "}
+              <input
+                value={this.state.date}
+                onChange={this.updateDate}
+                placeholder={this.state.date}
+              />
+              <br />
+              <button onClick={this.save}>Add Credit</button>
+            </div>
+            <div className="reference">
+              <h3>For reference Only</h3>
+              <h4>AccountBalance = Total Credit - Total Debit</h4>
+              <h4>
+                Total Credits: $
+                {this.props.credits
+                  .reduce((sum, credit) => sum + credit.amount, 0)
+                  .toFixed(2)}
+              </h4>                  
+              <h4>
+                 Total Debits: $
+                {this.props.credits
+                  ? Math.abs(
+                      this.props.credits.reduce((sum, credit) => sum + credit.amount, 0) -
+                      this.props.accountBalance
+                    ).toFixed(2)
+                  : "0.00"}                
+              </h4>
+              <h4>Account Balance: ${this.props.accountBalance}</h4>
+
+            </div>
+          </div>
         </div>
-        <br />
-        <AccountBalance accountBalance={this.props.accountBalance} />
-        <br />
-        <Link to="/">Back to Home</Link>
       </div>
     );
   }
